@@ -22,6 +22,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+session_start();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+
+    // ডেমো ইউজারচেক (বাস্তবে ডাটাবেসে চেক করতে হবে)
+    $allowed_users = ['user1', 'user2', 'admin'];
+
+    if (in_array($username, $allowed_users)) {
+        $_SESSION['username'] = $username;
+        header("Location: bonus.php");
+        exit();
+    } else {
+        $error = "ইউজারনেম ভুল!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
     <title>CK444 লগইন</title>
 </head>
 <body>
@@ -33,4 +54,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </body>
 </html>
-https://github.com/online233473/CK444-Bonuse-server.git
